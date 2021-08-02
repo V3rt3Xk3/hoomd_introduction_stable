@@ -9,33 +9,12 @@
 		"python.terminal.activateEnvironment": true,
     	"python.terminal.activateEnvInCurrentTerminal": true,
 		"python.analysis.extraPaths": [
-			"${workspaceFolder}/HOOMD_VENV/",
 			"${workspaceFolder}/"	
 		],
-		"terminal.integrated.profiles.linux": {
-
-			"bash": {
-				"path": "bash",
-				
-			},
-			"zsh": {
-				"path": "zsh"
-			},
-			"fish": {
-				"path": "fish"
-			},
-			"tmux": {
-				"path": "tmux",
-				"icon": "terminal-tmux"
-			},
-			"pwsh": {
-				"path": "pwsh",
-				"icon": "terminal-powershell"
-			}
-		},
 		"files.exclude": {
 			"**/HOOMD_VENV": true
 		}
 	}
+
 
 }
