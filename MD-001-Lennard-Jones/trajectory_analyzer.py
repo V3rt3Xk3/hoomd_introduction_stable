@@ -22,7 +22,7 @@ filePath = SysUtils.generateSnaptshotPath(currentPath=currentPath, fileName=(fil
 with gsd.hoomd.open(filePath) as trajectoryFile:
     # NOTE: Here we could use a for loop and the snapshot visualizer function, then merge them to a gif
     print(len(trajectoryFile))
-    snapshot = trajectoryFile[0]
+    snapshot = trajectoryFile[-1]
 
 
 box = snapshot.configuration.box
@@ -41,7 +41,7 @@ colors[particleTypes == 0] = fresnel.color.linear([0.2, 0.2, 0.95]) # 0 Type
 scene = fresnel.Scene()
 
 # NOTE: Spheres for every particle in the system
-geometry = fresnel.geometry.Sphere(scene, N=numberOfParticles, radius=0.2)
+geometry = fresnel.geometry.Sphere(scene, N=numberOfParticles, radius=1)
 geometry.position[:] = snapshot.particles.position
 geometry.material = fresnel.material.Material(roughness=0.9)
 geometry.outline_width = 0.05
