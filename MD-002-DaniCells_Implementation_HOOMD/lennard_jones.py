@@ -4,6 +4,7 @@ from Utilities.Utils import SysUtils
 
 import hoomd
 import hoomd.md
+from hoomd.lattice import unitcell
 
 # NOTE: General Sys setup
 currentPath = os.path.dirname(__file__)
@@ -11,15 +12,17 @@ currentPath = os.path.dirname(__file__)
 # NOTE: Initialize the execution context to control where HOOMD will execute the simulation. When no command line options are provided, HOOMD will auto-select a GPU if it exists, or run on the CPU.
 hoomd.context.initialize("")
 
-# NOTE: Initialize a n by n by n simple cubic lattice of particles. The lattice initializer by default creates all particles named type "A", and with 0 velocity.
-hoomd.init.create_lattice(unitcell=hoomd.lattice.sc(a=2.0), n=5)
+# NOTE: We are initializing a single UnitCell with a single particle, where the lattice vectors are a 100 microns each and the cell is in the middle
+BiologicalUnitcell = unitcell(N=1, a1=100, a2=100, a3=100, position=[[50,50,50]], type_name="G1")
+hoomd.init.create_lattice(unitcell=BiologicalUnitcell(numberOfCells = 1), n=1)
 
 # NOTE: Finding the neighbour particles 'efficiently'
 neighbourList = hoomd.md.nlist.cell()
 
 # NOTE: Specifying the Potential to calculate
-lennard_jones_Potential = hoomd.md.pair.lj(r_cut=2.5, nlist=neighbourList)
-lennard_jones_Potential.pair_coeff.set("A","A",epsilon = 1.0, sigma = 1.0)
+lennard_jones_Potential = hoomd.md.pair.lj(r_cut=3.5, nlist=neighbourList)
+# NOTE: Sigma is "1.78", because it gives an optimal distance of 2
+lennard_jones_Potential.pair_coeff.set("A","A",epsilon = 2.0, sigma = 1.78)
 
 # NOTE: Integrator
 hoomd.md.integrate.mode_standard(dt=0.005)
