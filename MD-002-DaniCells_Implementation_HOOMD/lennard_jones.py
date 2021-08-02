@@ -43,7 +43,7 @@ hoomd.analyze.log(filename=logPath,
 # NOTE: Dumping the snapshots
 # WOW: There seems to be no equivalent method in the 3.0.0 beta
 trajectoryPath = SysUtils.generateSnaptshotPath(currentPath, "trajectory.gsd")
-hoomd.dump.gsd(trajectoryPath, period=1e3, group=allParticles, overwrite=True)
+hoomd.dump.gsd(trajectoryPath, period=2e3, group=allParticles, overwrite=True)
 
 # NOTE: Running the simulation
 hoomd.run(5e4)
@@ -80,7 +80,7 @@ hoomd.md.integrate.langevin(group=allParticles, kT=0.2, seed=42)
 
 
 trajectoryPath = SysUtils.generateSnaptshotPath(currentPath, "trajectory.gsd")
-hoomd.dump.gsd(trajectoryPath, period=1e3, group=hoomd.group.all(), overwrite=True)
+hoomd.dump.gsd(trajectoryPath, period=2e3, group=hoomd.group.all(), overwrite=True)
 
 # NOTE: Running the simulation
 hoomd.run(5e4)
@@ -116,7 +116,7 @@ hoomd.md.integrate.langevin(group=allParticles, kT=0.2, seed=42)
 
 
 trajectoryPath = SysUtils.generateSnaptshotPath(currentPath, "trajectory.gsd")
-hoomd.dump.gsd(trajectoryPath, period=1e3, group=hoomd.group.all(), overwrite=True)
+hoomd.dump.gsd(trajectoryPath, period=2e3, group=hoomd.group.all(), overwrite=True)
 
 # NOTE: Running the simulation
 hoomd.run(5e4)

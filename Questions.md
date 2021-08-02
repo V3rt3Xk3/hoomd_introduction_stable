@@ -10,6 +10,10 @@
   * In the hoomd system, it seems like we have to specify ditinct Types
 
 ## Approaches i tried to spawn a particle
+### There seems to be a solution
+* Saving a GSD
+
+### I tried many other approaches
 * Reinitialized the system with new UNITCELL
   * Error: System cannot be reinitialized
 * Edit hoomd system data
