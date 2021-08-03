@@ -51,6 +51,7 @@ snapshot = hoomdSystemObject.take_snapshot()
 numberOfParticles = snapshot.particles.N
 print("Current Number of particles: {}".format(numberOfParticles))
 
+
 # WOW: This seems to be the easiest way to add a particle.
 snapshot.particles.resize(numberOfParticles+1)
 numberOfParticles = snapshot.particles.N
