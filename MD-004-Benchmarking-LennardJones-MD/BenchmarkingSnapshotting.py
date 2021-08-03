@@ -7,7 +7,7 @@ from Utilities.Utils import PandasUtility
 
 simulationObject = SimulationInterface(numberOfParticles = 10000, LJsigma = 0.001, LJepsilon = 0.001)
 simulationObject.RunSetup()
-simulationObject.RunSimulation(runLength=360)
+simulationObject.RunSimulation(runLength=600)
 
 benchmarkDictionary = {}
 
@@ -28,7 +28,7 @@ avgTime = Benchmarking.BenchmarkSnapshot(benchmarkRunSnapshotNAlterNRun, 10)
 print("On average it took: {} seconds!".format(avgTime))
 benchmarkDictionary["AlterNRestore"] = [avgTime]
 
-avgTime = Benchmarking.BenchmarkSimulation(simulationObject.RunSimulation, 360, 10)
+avgTime = Benchmarking.BenchmarkSimulation(simulationObject.RunSimulation, 600, 10)
 print("On average it took: {} seconds!".format(avgTime))
 benchmarkDictionary["Run10Mins"] = [avgTime]
 
