@@ -32,3 +32,4 @@ benchmarkDictionary["Run10Mins"] = [avgTime]
 
 BenchmarkRun = pandas.DataFrame.from_dict(benchmarkDictionary, orient="columns")
 print(BenchmarkRun)
+BenchmarkRun.to_csv("BenchmarkRun.txt", sep="\t", encoding="utf-8", index=False)
