@@ -1,4 +1,19 @@
+import pandas
 
+class PandasUtility:
+
+    @staticmethod
+    def to_csv(currentPath, fileName, dataFrame):
+        # HACK: Gathering the Company names for the web crawler.
+
+        if (currentPath == ""):
+            file_path = "./" + fileName
+        elif (currentPath != ""):
+            file_path = currentPath + '/' + fileName
+
+        dataFrame.to_csv(file_path, sep="\t", encoding="utf-8", index=False)
+
+        return
 
 class SysUtils:
 

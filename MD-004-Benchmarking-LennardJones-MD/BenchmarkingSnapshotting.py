@@ -1,7 +1,9 @@
+import os
 import pandas
 
 from Utilities.SimulationInterface import SimulationInterface
 from Utilities.Benchmarking import Benchmarking
+from Utilities.Utils import PandasUtility
 
 simulationObject = SimulationInterface(numberOfParticles = 10000, LJsigma = 0.001, LJepsilon = 0.001)
 simulationObject.RunSetup()
@@ -32,4 +34,6 @@ benchmarkDictionary["Run10Mins"] = [avgTime]
 
 BenchmarkRun = pandas.DataFrame.from_dict(benchmarkDictionary, orient="columns")
 print(BenchmarkRun)
-BenchmarkRun.to_csv("BenchmarkRun.txt", sep="\t", encoding="utf-8", index=False)
+
+current_path = os.path.dirname(__file__)
+PandasUtility.to_csv(currentPath=current_path, fileName="BenchmarkRun.txt", dataFrame=BenchmarkRun)
