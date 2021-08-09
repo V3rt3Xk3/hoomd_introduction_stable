@@ -28,6 +28,14 @@ avgTime = Benchmarking.BenchmarkSnapshot(benchmarkRunSnapshotNAlterNRun, 10)
 print("On average it took: {} seconds!".format(avgTime))
 benchmarkDictionary["AlterNRestore"] = [avgTime]
 
+def benchmarkRunSnapshotNIterateNRun():
+	simulationObject.TakeSnapshotIterateNRestore()
+	simulationObject.RunSimulation(1)
+
+avgTime = Benchmarking.BenchmarkSnapshot(benchmarkRunSnapshotNAlterNRun, 10)
+print("On average it took: {} seconds!".format(avgTime))
+benchmarkDictionary["IterateNRestore"] = [avgTime]
+
 avgTime = Benchmarking.BenchmarkSimulation(simulationObject.RunSimulation, 600, 10)
 print("On average it took: {} seconds!".format(avgTime))
 benchmarkDictionary["Run10Mins"] = [avgTime]

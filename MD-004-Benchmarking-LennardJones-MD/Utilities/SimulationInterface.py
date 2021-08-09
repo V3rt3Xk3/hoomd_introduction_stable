@@ -70,3 +70,20 @@ class SimulationInterface(object):
 		snapshot.particles.position[numberOfParticles] = [positionVector3D[i] for i in range(len(positionVector3D))]
 
 		self.hoomdSystemObject.restore_snapshot(snapshot)
+
+	def TakeSnapshotIterateNRestore(self):
+		snapshot = self.hoomdSystemObject.take_snapshot()
+
+		numberOfParticles = snapshot.particles.N
+		snapshot.particles.resize(numberOfParticles+1)
+		# NOTE: The position is consequence of the
+		positionVector3D = []
+		for i in range(3):
+			positionVector3D.append((random()*self.unitcellRepetitionsPerAxis*2-self.unitcellRepetitionsPerAxis))
+		snapshot.particles.position[numberOfParticles] = [positionVector3D[i] for i in range(len(positionVector3D))]
+
+		iterationCounter = 0
+		for i in range(snapshot.particles.N):
+			iterationCounter += 1
+
+		self.hoomdSystemObject.restore_snapshot(snapshot)
